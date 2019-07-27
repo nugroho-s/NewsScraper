@@ -42,7 +42,7 @@ public class Kompas extends NewsSite {
 
     @Override
     protected boolean doLogin() {
-        try(FileReader fileReader = new FileReader("credentials.json")){
+        try(FileReader fileReader = new FileReader("utils/credentials.json")){
             JsonReader jsonReader = new JsonReader(fileReader);
             Credential credential = gson.fromJson(jsonReader, Credential.class);
             driver.findElement(By.id("username")).sendKeys(credential.getUsername());

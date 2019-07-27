@@ -53,7 +53,7 @@ public abstract class NewsSite {
 
     public void login(){
         driver.get(getLoginPage()+"ajfair298"); //404 not found
-        try(FileReader fileReader = new FileReader("cookies.json")){
+        try(FileReader fileReader = new FileReader("utils/cookies.json")){
             JsonReader jsonReader = new JsonReader(fileReader);
             Type type = new TypeToken<Set<Cookie>>(){}.getType();
             cookies = gson.fromJson(jsonReader,type);
@@ -74,7 +74,7 @@ public abstract class NewsSite {
 
     public void saveCookies(){
         gson.toJson(cookies);
-        try(FileWriter writer = new FileWriter("cookies.json")){
+        try(FileWriter writer = new FileWriter("utils/cookies.json")){
             JsonWriter jsonWriter = new JsonWriter(writer);
             gson.toJson(cookies,Set.class,jsonWriter);
         } catch (IOException e) {
@@ -96,7 +96,7 @@ public abstract class NewsSite {
             }
         }
         try {
-            document.save(getSaveFileName());
+            document.save("out/"+getSaveFileName());
             document.close();
         } catch (IOException e) {
             e.printStackTrace();
